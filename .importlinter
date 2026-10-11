@@ -1,0 +1,115 @@
+[importlinter]
+root_packages =
+    sentinel_config
+    contracts
+    policy
+    gateway
+    agent
+    llm
+    decision
+    tools
+    redaction
+    audit
+    api
+    evidence
+include_external_packages = True
+
+# --- Invariant: agent NEVER imports sentinel_config internals or tools/gateway ---
+[importlinter:contract:agent-isolation]
+name = Agent cannot import sentinel_config, tools, or gateway
+type = forbidden
+source_modules =
+    agent
+forbidden_modules =
+    sentinel_config.tools
+    sentinel_config.guardrails
+    sentinel_config.validate
+    tools
+    gateway
+
+# --- Invariant: policy engine has minimal dependencies ---
+[importlinter:contract:policy-purity]
+name = Policy engine imports only stdlib, pydantic, pyyaml, contracts
+type = forbidden
+source_modules =
+    policy
+forbidden_modules =
+    gateway
+    agent
+    llm
+    decision
+    tools
+    redaction
+    api
+    evidence
+    sqlalchemy
+    fastapi
+    httpx
+
+# --- Invariant: sentinel_config is pure data, no framework deps ---
+[importlinter:contract:config-purity]
+name = sentinel_config is pure data
+type = forbidden
+source_modules =
+    sentinel_config
+forbidden_modules =
+    sqlalchemy
+    fastapi
+    httpx
+    langgraph
+    mistralai
+    gateway
+    agent
+    llm
+    decision
+    tools
+    redaction
+    api
+    evidence
+
+# --- Invariant: contracts has no framework deps ---
+[importlinter:contract:contracts-purity]
+name = contracts package has minimal deps
+type = forbidden
+source_modules =
+    contracts
+forbidden_modules =
+    sqlalchemy
+    fastapi
+    httpx
+    langgraph
+    mistralai
+    gateway
+    agent
+    llm
+    decision
+    tools
+    redaction
+    api
+    evidence
+
+# --- Invariant: redaction never imports LLM/agent ---
+[importlinter:contract:redaction-isolation]
+name = Redaction module cannot import agent or LLM
+type = forbidden
+source_modules =
+    redaction
+forbidden_modules =
+    agent
+    llm
+    decision
+    gateway
+    api
+
+# --- Invariant: audit has no agent/LLM deps ---
+[importlinter:contract:audit-isolation]
+name = Audit module isolated from agent/LLM
+type = forbidden
+source_modules =
+    audit
+forbidden_modules =
+    agent
+    llm
+    decision
+    gateway
+    api

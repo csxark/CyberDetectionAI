@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.import_linter_cache/
+.hypothesis/
+.coverage
+htmlcov/
+.tox/
+.venv/
+venv/
+env/
+
+
+# Node
+node_modules/
+packages/web/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets — NEVER commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Sandbox artifacts
+sandbox_tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Alembic auto-generated
+alembic/versions/__pycache__/
+
+# OpenTelemetry local export
+otel-export/
