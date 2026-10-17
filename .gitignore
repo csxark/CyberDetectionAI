@@ -48,3 +48,4 @@ alembic/versions/__pycache__/
 
 # OpenTelemetry local export
 otel-export/
+
