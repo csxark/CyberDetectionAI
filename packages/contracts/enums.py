@@ -97,3 +97,21 @@ class SSEEventType(StrEnum):
     NEED_INPUT = "need_input"
     REPORT_READY = "report_ready"
     ERROR = "error"
+
+
+@unique
+class ToolId(StrEnum):
+    """Canonical tool identifiers for SentinelAI."""
+
+    PARSE_LOGS = "parse_logs"
+    EXTRACT_INDICATORS = "extract_indicators"
+    SEARCH_EVENTS = "search_events"
+    CORRELATE_TIMELINE = "correlate_timeline"
+    LOOKUP_ATTACK_TECHNIQUE = "lookup_attack_technique"
+    SEARCH_KB = "search_kb"
+    MATCH_SIGMA_RULES = "match_sigma_rules"
+    CODE_SEARCH = "code_search"
+    CHECK_PATCH = "check_patch"
+    BUILD_REPORT = "build_report"
+    LAB_BLOCK_IP = "lab_block_ip"
+
